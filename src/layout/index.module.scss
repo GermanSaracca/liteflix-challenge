@@ -1,4 +1,5 @@
 @use '../sass/colors';
+@use '../sass/mixins';
 
 .layout_wrapper {
 	display: flex;
@@ -8,9 +9,14 @@
 
 	.main_wrapper {
 		flex: 1;
-		background-color: yellowgreen;
 		background-image: url('../assets/media/images/tokyo.jpg');
 		background-size: cover;
 		background-position: center;
+		max-height: 100vh;
+		overflow-y: auto;
+
+		@include mixins.media(desktop-m) {
+			max-height: unset;
+		}
 	}
 }

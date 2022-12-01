@@ -1,4 +1,5 @@
 @use './colors';
+@use './mixins';
 
 ::selection {
 	background-color: colors.$secondary;
@@ -14,4 +15,5 @@ html {
 body {
 	font-family: 'BebasNeue', sans-serif, monospace;
 	letter-spacing: 4px;
+	@include mixins.custom-scrollbar($width: 4px);
 }

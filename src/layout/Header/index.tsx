@@ -1,10 +1,12 @@
 import { useRef, useState } from 'react'
 import BurgerButton from '@/components/ui/BurgerButton'
 import AddMovieButton from '@/components/AddMovieButton'
+import NotificationsBell from '@/components/NotificationsBell'
 import liteflix_logo from '@/assets/media/images/liteflix-logo.svg'
 import user_profile from '@/assets/media/images/user-profile.png'
 import classNames from 'classnames'
 import style from './index.module.scss'
+import Menu from './Menu'
 
 const Header = () => {
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
@@ -18,40 +20,25 @@ const Header = () => {
 		<>
 			<header className={style.header} ref={headerRef}>
 				<div className={style.header_container}>
-					<BurgerButton open={menuIsOpen} setOpen={toggleMenu} />
-					<img src={liteflix_logo} alt='Liteflix' />
+					<div className={classNames(style.burger_wrapper, { [style.low_opacity]: menuIsOpen })}>
+						<BurgerButton open={menuIsOpen} setOpen={toggleMenu} />
+					</div>
+					<div className={style.add_movie_wrapper}>
+						<AddMovieButton />
+					</div>
 
+					<div className={style.notifications_wrapper}>
+						<NotificationsBell />
+					</div>
+					<img src={liteflix_logo} alt='Liteflix' className={style.liteflix_logo} />
 					<img src={user_profile} alt='User settings' className={style.user_profile} />
 				</div>
 			</header>
-			<div
-				className={classNames(style.menu_container, {
-					[style.is_opened]: menuIsOpen,
-					[style.is_closed]: !menuIsOpen,
-				})}
-				style={{ paddingTop: headerRef?.current?.clientHeight }}
-			>
-				<ul>
-					<li>Inicio</li>
-					<li>Series</li>
-					<li>Películas</li>
-					<li>Agregadas recientemente</li>
-					<li>Populares</li>
-					<li>Mis películas</li>
-					<li>Mi lista</li>
-					<li className={style.add_movie}>
-						<AddMovieButton />
-					</li>
-					<li className={style.log_out}>Cerrar sesión</li>
-				</ul>
-			</div>
-			<div
-				className={classNames(style.backdrop_menu, {
-					[style.is_opened]: menuIsOpen,
-					[style.is_closed]: !menuIsOpen,
-				})}
-				onClick={toggleMenu}
-			></div>
+			<Menu
+				opened={menuIsOpen}
+				toggleMenu={toggleMenu}
+				headerHeight={headerRef.current?.clientHeight}
+			/>
 		</>
 	)
 }
