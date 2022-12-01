@@ -1,32 +1,58 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import BurgerButton from '@/components/ui/BurgerButton'
-import { Bell, Arrow, Clip, Play, Star, PlayNoCircle, Plus, Checked } from '@/components/ui/Icons'
+import AddMovieButton from '@/components/AddMovieButton'
+import liteflix_logo from '@/assets/media/images/liteflix-logo.svg'
+import user_profile from '@/assets/media/images/user-profile.png'
+import classNames from 'classnames'
 import style from './index.module.scss'
-import Button from '@/components/ui/Button'
 
 const Header = () => {
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
+	const headerRef = useRef<HTMLElement>(null)
+
+	const toggleMenu = () => {
+		setMenuIsOpen(current => !current)
+	}
 
 	return (
-		<header className={style.header}>
-			<h2>Header</h2>
-			<BurgerButton open={menuIsOpen} setOpen={() => setMenuIsOpen(current => !current)} />
-			{menuIsOpen ? <p>Menu abierto</p> : <p>Menu cerrado</p>}
-			<div>
-				<Bell width={30} height={30} />
-				<Arrow width={30} height={30} />
-				<Clip width={30} height={30} />
-				<Play width={30} height={30} />
-				<Star width={30} height={30} />
-				<PlayNoCircle width={30} height={30} />
-				<Plus width={30} height={30} />
-				<Checked width={30} height={30} />
-			</div>
+		<>
+			<header className={style.header} ref={headerRef}>
+				<div className={style.header_container}>
+					<BurgerButton open={menuIsOpen} setOpen={toggleMenu} />
+					<img src={liteflix_logo} alt='Liteflix' />
 
-			<Button variant='light' disabled>
-				Hola
-			</Button>
-		</header>
+					<img src={user_profile} alt='User settings' className={style.user_profile} />
+				</div>
+			</header>
+			<div
+				className={classNames(style.menu_container, {
+					[style.is_opened]: menuIsOpen,
+					[style.is_closed]: !menuIsOpen,
+				})}
+				style={{ paddingTop: headerRef?.current?.clientHeight }}
+			>
+				<ul>
+					<li>Inicio</li>
+					<li>Series</li>
+					<li>Películas</li>
+					<li>Agregadas recientemente</li>
+					<li>Populares</li>
+					<li>Mis películas</li>
+					<li>Mi lista</li>
+					<li className={style.add_movie}>
+						<AddMovieButton />
+					</li>
+					<li className={style.log_out}>Cerrar sesión</li>
+				</ul>
+			</div>
+			<div
+				className={classNames(style.backdrop_menu, {
+					[style.is_opened]: menuIsOpen,
+					[style.is_closed]: !menuIsOpen,
+				})}
+				onClick={toggleMenu}
+			></div>
+		</>
 	)
 }
 export default Header

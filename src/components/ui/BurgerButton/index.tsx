@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react'
 import './index.scss'
 
 interface IProps {
@@ -20,3 +19,8 @@ const BurgerButton = ({ open, setOpen }: IProps) => {
 	)
 }
 export default BurgerButton
+
+/*
+** Usage
+	<Button variant='light'>I´m the Liteflix button</Button>
+*/

@@ -10,7 +10,7 @@ const Layout = ({ children }: Props) => {
 	return (
 		<div className={style.layout_wrapper}>
 			<Header />
-			<main>{children}</main>
+			<main className={style.main_wrapper}>{children}</main>
 		</div>
 	)
 }
