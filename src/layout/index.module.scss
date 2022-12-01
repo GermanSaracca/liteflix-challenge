@@ -1,0 +1,6 @@
+@use '../sass/colors';
+
+.layout_wrapper {
+	min-height: 100%;
+	border: solid 4px colors.$secondary;
+}

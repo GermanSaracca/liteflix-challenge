@@ -1,0 +1,7 @@
+@use '../../sass/colors';
+
+.header {
+	display: flex;
+	background-color: colors.$primary;
+	padding: 1rem;
+}

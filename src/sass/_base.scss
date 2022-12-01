@@ -1,0 +1,15 @@
+@use './colors';
+
+::selection {
+	background-color: colors.$secondary;
+	color: colors.$primary;
+}
+
+html {
+	font-family: 'BebasNeue', sans-serif, monospace;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'BebasNeue', sans-serif, monospace;
+}
