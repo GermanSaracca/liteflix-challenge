@@ -1,4 +1,5 @@
-@use '../../sass/colors';
+@use '../../sass/variables/colors';
+@use '../../sass/variables/spacing';
 @use '../../sass/mixins';
 
 .header {
@@ -10,7 +11,7 @@
 	top: 0;
 	bottom: auto;
 	right: 0;
-	z-index: 10;
+	z-index: spacing.$z-index-header;
 
 	.header_container {
 		display: flex;

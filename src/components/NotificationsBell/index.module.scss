@@ -1,9 +1,9 @@
-@use '../../sass/colors';
+@use '../../sass/variables/colors';
 
 .notifications_bell {
 	background-color: transparent;
 	padding: 0;
-	border: 0;
+	border: none;
 	transition: transform 150ms ease-in-out;
 	position: relative;
 	cursor: pointer;

@@ -61,7 +61,6 @@ const Dashboard = () => {
 						<div className={style.ctas_wrapper}>
 							<Button variant='dark' text='Reproducir' icon={<PlayNoCircle />} />
 							<Button variant='transparent' text='Mi lista' icon={<Plus />} />
-							<Button variant='light' text='Reproducir' icon={<PlayNoCircle />} />
 						</div>
 					</div>
 				</div>

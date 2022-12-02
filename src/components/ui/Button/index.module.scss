@@ -1,44 +1,118 @@
-@use '../../../sass/colors';
+@use '../../../sass/variables/colors';
 
 .button {
+	$button_width: 248px;
+	$animation_duration: 300ms;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 12px;
-	width: 248px;
+	width: $button_width;
+	min-width: $button_width;
 	padding: 21px 10px 17px;
-	border: 0;
+	border: none;
 	font-size: 18px;
 	font-weight: 400;
 	letter-spacing: 4px;
 	transition: all 100ms ease-in-out;
+	position: relative;
+	cursor: pointer;
 
 	svg {
 		display: inline-block;
 		vertical-align: middle;
 	}
 
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
+
+	&:active {
+		transform: scale(0.95);
+	}
+
 	&.light_variant {
 		color: colors.$primary;
 		background-color: colors.$white;
+
+		&:hover::before,
+		&:hover::after {
+			border-width: 0.225rem;
+		}
 	}
 	&.dark_variant {
 		color: colors.$white;
 		background-color: colors.$primary;
+
+		&:hover {
+			color: colors.$secondary;
+		}
 	}
 	&.transparent_variant {
 		color: colors.$white;
-		background-color: change-color($color: colors.$primary, $alpha: 0.25);
+		background-color: change-color($color: colors.$primary, $alpha: 0.4);
 		border: solid 1px change-color($color: colors.$white, $alpha: 0.5);
+
+		&:hover {
+			color: colors.$secondary;
+			border: none;
+		}
 	}
 
-	&:hover {
-		color: colors.$secondary;
-		cursor: pointer;
-		transform: scale(1.05);
+	&.dark_variant,
+	&.light_variant,
+	&.transparent_variant {
+		&:hover::before,
+		&:hover::after {
+			border-color: colors.$secondary;
+		}
 	}
-	&:disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
+
+	// Border effect
+
+	&::before,
+	&::after {
+		display: block;
+		content: ' ';
+		border-top: none;
+		border-right: none;
+		border-bottom: none;
+		border-left: none;
+		position: absolute;
+		width: 0;
+		height: 0;
+		opacity: 0;
+		transition: opacity 200ms ease-in-out;
+	}
+
+	&::before {
+		bottom: 0;
+		left: 0;
+	}
+
+	&::after {
+		bottom: 0;
+		left: 0;
+	}
+
+	&:hover::before {
+		width: $button_width;
+		height: 100%;
+		opacity: 1;
+		border-left: 0.125rem solid;
+		border-top: 0.125rem solid;
+		transition: height $animation_duration cubic-bezier(0.07, 0.62, 0.61, 1),
+			width $animation_duration $animation_duration cubic-bezier(0.07, 0.62, 0.61, 1);
+	}
+	&:hover::after {
+		width: $button_width;
+		height: 100%;
+		opacity: 1;
+		border-bottom: 0.125rem solid;
+		border-right: 0.125rem solid;
+		transition: width $animation_duration cubic-bezier(0.07, 0.62, 0.61, 1),
+			height calc($animation_duration/2) $animation_duration cubic-bezier(0.07, 0.62, 0.61, 1);
 	}
 }
