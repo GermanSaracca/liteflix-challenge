@@ -9,11 +9,9 @@
 
 	.main_wrapper {
 		flex: 1;
-		background-image: url('../assets/media/images/tokyo.jpg');
-		background-size: cover;
-		background-position: center;
 		max-height: 100vh;
 		overflow-y: auto;
+		overflow-x: hidden;
 
 		@include mixins.media(desktop-m) {
 			max-height: unset;

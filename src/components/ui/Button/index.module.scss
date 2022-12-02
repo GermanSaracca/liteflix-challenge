@@ -1,17 +1,41 @@
+@use '../../../sass/colors';
+
 .button {
-	border: solid 1px red;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	width: 248px;
+	padding: 21px 10px 17px;
+	border: 0;
+	font-size: 18px;
+	font-weight: 400;
+	letter-spacing: 4px;
+	transition: all 100ms ease-in-out;
+
+	svg {
+		display: inline-block;
+		vertical-align: middle;
+	}
 
 	&.light_variant {
-		color: black;
-		background-color: white;
+		color: colors.$primary;
+		background-color: colors.$white;
 	}
 	&.dark_variant {
-		color: white;
-		background-color: black;
+		color: colors.$white;
+		background-color: colors.$primary;
 	}
 	&.transparent_variant {
-		color: white;
-		background-color: transparent;
+		color: colors.$white;
+		background-color: change-color($color: colors.$primary, $alpha: 0.25);
+		border: solid 1px change-color($color: colors.$white, $alpha: 0.5);
+	}
+
+	&:hover {
+		color: colors.$secondary;
+		cursor: pointer;
+		transform: scale(1.05);
 	}
 	&:disabled {
 		cursor: not-allowed;

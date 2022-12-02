@@ -15,7 +15,7 @@
 	@include mixins.custom-scrollbar($width: 3px, $thumbColor: rgba(#fff, 0.2));
 	transition: transform #{$menu-transition-time}ms ease-in-out;
 	position: absolute;
-	z-index: 1;
+	z-index: 5;
 
 	&.is_opened {
 		transform: translateX(0);

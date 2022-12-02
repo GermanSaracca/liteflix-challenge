@@ -1,0 +1,73 @@
+@use '../../sass/colors';
+
+.dashboard {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	// height: 80vh;
+	// background-size: cover;
+	// background-position: center;
+	// background-repeat: no-repeat;
+	// border: solid 2px white;
+
+	.image_wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+		width: 100%;
+		border-bottom: solid 2px red;
+
+		img {
+			min-width: 250%;
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			z-index: 0;
+			bottom: 0;
+			height: 200px;
+			width: 100%;
+			background: linear-gradient(180deg, transparent 0%, 20%, colors.$primary 90%);
+		}
+	}
+
+	.dashboard_content {
+		position: absolute;
+		top: 40vh;
+
+		header {
+			padding-inline: 32px;
+			text-align: center;
+			// border: solid 2px yellow;
+
+			p {
+				color: colors.$white;
+				font-weight: 400;
+				font-size: 20px;
+				text-shadow: 0 0 4px colors.$primary;
+
+				span {
+					font-weight: 700;
+				}
+			}
+			h1 {
+				color: colors.$secondary;
+				font-weight: 700;
+				font-size: 76px;
+				line-height: 100%;
+				text-shadow: 0 0 4px colors.$primary;
+			}
+		}
+
+		.ctas_wrapper {
+			width: 100vw;
+			display: flex;
+			justify-content: center;
+			gap: 1rem;
+			// background-color: orange;
+			// border: solid 2px red;
+		}
+	}
+}

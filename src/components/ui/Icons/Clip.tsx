@@ -6,6 +6,7 @@ export const Clip = (props: any) => {
 			viewBox='0 0 18 18'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
+			aria-hidden='true'
 			{...props}
 		>
 			<path
