@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
+import Button from '@/components/ui/Button'
+import MoviesList from '@/containers/MoviesList'
+import { PlayNoCircle, Plus } from '@/components/ui/Icons'
 import { getNowPlayingMovies, THE_MOVIE_DB_IMAGES_BASE_URL } from '@/services'
 import { Movie } from '@/types'
 import style from './index.module.scss'
-import Button from '@/components/ui/Button'
-import { PlayNoCircle, Plus } from '@/components/ui/Icons'
 
 const Dashboard = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -52,15 +53,19 @@ const Dashboard = () => {
 						/>
 					</div>
 					<div className={style.dashboard_content}>
-						<header>
+						<header className={style.header}>
 							<p>
 								Original de <span>Liteflix</span>
 							</p>
 							<h1>{featuredMovie.title}</h1>
+							<div className={style.ctas_wrapper}>
+								<Button variant='dark' text='Reproducir' icon={<PlayNoCircle />} />
+								<Button variant='transparent' text='Mi lista' icon={<Plus />} />
+							</div>
 						</header>
-						<div className={style.ctas_wrapper}>
-							<Button variant='dark' text='Reproducir' icon={<PlayNoCircle />} />
-							<Button variant='transparent' text='Mi lista' icon={<Plus />} />
+
+						<div className={style.movies_list_wrapper}>
+							<MoviesList />
 						</div>
 					</div>
 				</div>

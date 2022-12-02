@@ -160,6 +160,7 @@
 		background-color: change-color($color: colors.$primary, $alpha: 0.6);
 		position: absolute;
 		inset: 0;
+		z-index: 1;
 		transition: all 400ms ease-in-out;
 
 		&.is_opened {

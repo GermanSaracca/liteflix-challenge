@@ -1,26 +1,17 @@
 @use '../../sass/variables/colors';
+@use '../../sass/mixins';
 
 .dashboard {
 	display: flex;
 	flex-direction: column;
-	position: relative;
-	// height: 80vh;
-	// background-size: cover;
-	// background-position: center;
-	// background-repeat: no-repeat;
-	// border: solid 2px white;
 
 	.image_wrapper {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		position: relative;
-		border-bottom: solid 1px white;
 
 		img {
-			// min-width: 275%; // 👈 Menos control de la altura
-
-			// 👇Más control de la altura pero pierde calidad ? chequear al deployar
 			min-height: 80vh;
 			object-fit: cover;
 		}
@@ -30,7 +21,7 @@
 			position: absolute;
 			z-index: 0;
 			bottom: 0;
-			height: 200px;
+			height: 40%;
 			width: 100%;
 			background: linear-gradient(180deg, transparent 0%, 20%, colors.$primary 90%);
 		}
@@ -40,19 +31,20 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		position: absolute;
-		top: 40vh;
+		width: 100%;
+		margin-top: -45vh;
+		position: relative;
 
-		header {
+		.header {
 			padding-inline: 32px;
-			text-align: center;
 			margin-bottom: 1rem;
+			text-align: center;
+			text-shadow: 0 0 4px colors.$primary;
 
 			p {
 				color: colors.$white;
 				font-weight: 400;
 				font-size: 20px;
-				text-shadow: 0 0 4px colors.$primary;
 				margin-bottom: 0.5rem;
 
 				span {
@@ -64,15 +56,84 @@
 				font-weight: 700;
 				font-size: 76px;
 				line-height: 100%;
-				text-shadow: 0 0 4px colors.$primary;
+			}
+
+			.ctas_wrapper {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 1rem;
+				margin-bottom: 64px;
 			}
 		}
 
-		.ctas_wrapper {
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
-			border: solid 1px red;
+		.movies_list_wrapper {
+			width: 100%;
+		}
+	}
+
+	@include mixins.media(tablet) {
+		.dashboard_content {
+			.header {
+				.ctas_wrapper {
+					flex-direction: row;
+					gap: 1.5rem;
+				}
+			}
+		}
+	}
+	@include mixins.media(desktop-m) {
+		max-height: 100vh;
+		position: relative;
+		overflow: hidden;
+
+		.dashboard_content {
+			flex-direction: row;
+			padding: 0 100px 86px;
+			position: absolute;
+			inset: 0;
+			margin: 0;
+
+			.header {
+				flex: 1;
+				align-self: flex-end;
+				text-align: left;
+				padding: 0;
+				margin-bottom: 160px;
+
+				p {
+					padding-left: 4px;
+				}
+
+				h1 {
+					font-size: 120px;
+					font-weight: 700;
+					letter-spacing: 16px;
+					text-align: left;
+					margin-bottom: 1rem;
+				}
+				.ctas_wrapper {
+					margin-bottom: 0;
+				}
+			}
+
+			.movies_list_wrapper {
+				align-self: flex-end;
+				flex: 0.4;
+				border: solid 1px blue;
+			}
+		}
+
+		.image_wrapper {
+			img {
+				min-height: 100vh;
+			}
+
+			&::before {
+				display: none;
+				visibility: hidden;
+				opacity: 0;
+			}
 		}
 	}
 }

@@ -1,0 +1,98 @@
+@use '../../../sass/variables/colors';
+
+.dropdown {
+	position: relative;
+	$spacing-right: 26px;
+	$dropdown-width: calc(240px + $spacing-right);
+	width: $dropdown-width;
+
+	.header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-left: auto;
+		color: colors.$white;
+		font-size: 18px;
+		padding: 0.5rem;
+		padding-inline: $spacing-right;
+
+		button {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			width: 100%;
+			font-weight: 400;
+			letter-spacing: 4px;
+			color: inherit;
+			background-color: transparent;
+			border: none;
+			padding: 0;
+			cursor: pointer;
+
+			span {
+				font-weight: 700;
+			}
+			svg {
+				margin-left: auto;
+			}
+		}
+	}
+
+	.menu {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		background-color: colors.$primary;
+		width: $dropdown-width;
+		padding: 1.5rem;
+		opacity: 0;
+		visibility: hidden;
+		transition: 400ms;
+		transition-delay: 50ms;
+		position: absolute;
+		z-index: 1;
+		top: calc(100% + 6px);
+		right: 0;
+		box-shadow: 2px 4px 16px change-color($color: colors.$white, $alpha: 0.1);
+
+		&.menu_is_open {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: -6px;
+			right: $spacing-right;
+			width: 12px;
+			height: 12px;
+			transform: rotate(45deg);
+			background-color: colors.$primary;
+		}
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			color: colors.$white;
+			background-color: transparent;
+			border: none;
+			padding: 0;
+			letter-spacing: 4px;
+			cursor: pointer;
+
+			span {
+				margin-left: auto;
+			}
+
+			&:has(span) {
+				font-weight: 700;
+			}
+
+			&:hover {
+				color: colors.$secondary;
+			}
+		}
+	}
+}

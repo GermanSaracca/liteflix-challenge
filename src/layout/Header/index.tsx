@@ -16,6 +16,8 @@ const Header = () => {
 		setMenuIsOpen(current => !current)
 	}
 
+	// TODO: Aplicar background primary al header cuando se scrolleo un poco, mas que nada mobile
+
 	return (
 		<>
 			<header className={style.header} ref={headerRef}>

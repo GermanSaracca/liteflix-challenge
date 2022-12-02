@@ -52,12 +52,12 @@
 	}
 	&.transparent_variant {
 		color: colors.$white;
-		background-color: change-color($color: colors.$primary, $alpha: 0.4);
-		border: solid 1px change-color($color: colors.$white, $alpha: 0.5);
+		background-color: change-color($color: colors.$primary, $alpha: 0.6);
+		outline: solid 1px change-color($color: colors.$white, $alpha: 0.5);
 
 		&:hover {
 			color: colors.$secondary;
-			border: none;
+			outline: none;
 		}
 	}
 
