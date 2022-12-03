@@ -6,12 +6,11 @@ import classNames from 'classnames'
 import style from './index.module.scss'
 
 interface IProps {
-	headerHeight: number | undefined
 	opened: boolean
 	toggleMenu: () => void
 }
 
-const Menu = ({ headerHeight, opened, toggleMenu }: IProps) => {
+const Menu = ({ opened, toggleMenu }: IProps) => {
 	return (
 		<>
 			<div
@@ -19,7 +18,6 @@ const Menu = ({ headerHeight, opened, toggleMenu }: IProps) => {
 					[style.is_opened]: opened,
 					[style.is_closed]: !opened,
 				})}
-				style={{ paddingTop: headerHeight }}
 			>
 				<header>
 					<BurgerButton open={opened} setOpen={toggleMenu} />

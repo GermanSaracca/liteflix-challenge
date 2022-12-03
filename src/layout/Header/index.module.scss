@@ -4,20 +4,27 @@
 
 .header {
 	display: flex;
-	flex-direction: column;
-	padding: 12px 24px 0;
+	justify-content: space-between;
+	height: spacing.$header-height-mobile;
+	padding-inline: 1.5rem;
 	position: fixed;
 	left: 0;
 	top: 0;
 	bottom: auto;
 	right: 0;
 	z-index: spacing.$z-index-header;
+	transition: background-color 150ms;
+
+	&.with_background {
+		background-color: change-color($color: colors.$primary, $alpha: 0.25);
+		backdrop-filter: blur(8px);
+	}
 
 	.header_container {
+		flex: 1;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding-bottom: 12px;
 
 		.add_movie_wrapper,
 		.notifications_wrapper {
@@ -32,11 +39,10 @@
 	}
 
 	@include mixins.media(desktop-m) {
-		padding: 32px 8vw 0;
+		height: spacing.$header-height-desktop;
+		padding-inline: 8vw;
 
 		.header_container {
-			padding-bottom: 32px;
-
 			.add_movie_wrapper,
 			.notifications_wrapper {
 				display: block;

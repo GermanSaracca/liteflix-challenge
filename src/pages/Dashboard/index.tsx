@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Button from '@/components/ui/Button'
 import MoviesList from '@/containers/MoviesList'
 import { PlayNoCircle, Plus } from '@/components/ui/Icons'
-import { getNowPlayingMovies, THE_MOVIE_DB_IMAGES_BASE_URL } from '@/services'
+import { getNowPlayingMovies, getPopularsMovies, THE_MOVIE_DB_IMAGES_BASE_URL } from '@/services'
 import { Movie } from '@/types'
 import style from './index.module.scss'
 
@@ -10,17 +10,39 @@ const Dashboard = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const [error, setError] = useState<boolean>(false)
 	const [featuredMovie, setFeaturedMovie] = useState<Movie | null>(null)
+	const [popularMovies, setPopularMovies] = useState<Movie[] | null>(null)
 
 	useEffect(() => {
 		const getMovie = async () => {
 			setIsLoading(true)
 
 			try {
-				const { data } = await getNowPlayingMovies()
-				const { results } = data
-				const movie = results[0]
+				const promises = [getNowPlayingMovies(), getPopularsMovies()]
 
-				setFeaturedMovie(movie)
+				const [nowPlayingMoviesPromise, popularMoviesPromise] = await Promise.allSettled(promises)
+
+				// Atrapamos el error solo si falla el llamado a la pelicula principal
+				if (nowPlayingMoviesPromise.status === 'fulfilled') {
+					const { value } = nowPlayingMoviesPromise
+
+					const { results: nowPlayingMovies } = value.data
+
+					setFeaturedMovie(nowPlayingMovies[0])
+				} else {
+					throw new Error()
+				}
+
+				// Si fallara este llamado igualmente mostrariamos la pelicula principal
+				if (popularMoviesPromise.status === 'fulfilled') {
+					const { value } = popularMoviesPromise
+
+					const { results: popularMovies } = value.data
+					/*
+						Hago un slice para evitar mostar en populares la pelicula de la portada
+						ya que en ambos endpoints viene en la posicion 0
+					*/
+					setPopularMovies(popularMovies.slice(1, 5))
+				}
 
 				// console.log(`${THE_MOVIE_DB_IMAGES_BASE_URL}${movie.backdrop_path}`)
 				// console.log(`${THE_MOVIE_DB_IMAGES_BASE_URL}${movie.poster_path}`)
@@ -31,15 +53,16 @@ const Dashboard = () => {
 				setIsLoading(false)
 			}
 		}
+
 		getMovie()
 	}, [])
 
-	if (isLoading) {
-		return <div>Some fullscreen loader...</div>
+	if (error) {
+		return <div>Some error fullscreen o se podria hacer retries en el fetch o un redirect</div>
 	}
 
-	if (error) {
-		return <div>Some error fullscreen</div>
+	if (isLoading) {
+		return <div>Some fullscreen loader...</div>
 	}
 
 	return (
@@ -65,7 +88,9 @@ const Dashboard = () => {
 						</header>
 
 						<div className={style.movies_list_wrapper}>
-							<MoviesList />
+							{popularMovies && popularMovies.length && (
+								<MoviesList initialMovies={popularMovies} />
+							)}
 						</div>
 					</div>
 				</div>

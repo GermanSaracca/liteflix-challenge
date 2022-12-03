@@ -1,52 +1,30 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import MovieCard from '@/components/MovieCard'
 import DropDown, { OptionType } from '@/components/ui/Dropdown'
-import { getPopularsMovies, THE_MOVIE_DB_IMAGES_BASE_URL } from '@/services'
 import { Movie } from '@/types'
-import Skeleton from 'react-loading-skeleton'
 import style from './index.module.scss'
 
+const options = {
+	my_movies: 'Mis películas',
+	popular: 'Populares',
+}
+
 const dropdownOptions: OptionType[] = [
-	{ text: 'Mis películas', value: 'Mis películas' },
-	{ text: 'Populares', value: 'Populares' },
+	{ text: options['popular'], value: options['popular'] },
+	{ text: options['my_movies'], value: options['my_movies'] },
 ]
 
-const MoviesList = () => {
-	const [isLoading, setIsLoading] = useState<boolean>(false)
-	const [error, setError] = useState<boolean>(false)
-	const [popularMovies, setPopularMovies] = useState<Movie[] | null>(null)
+interface IProps {
+	initialMovies: Movie[]
+}
+
+const MoviesList = ({ initialMovies }: IProps) => {
 	const [selectedOption, setSelectedOption] = useState<OptionType>(dropdownOptions[0])
-
-	useEffect(() => {
-		const fetchPopularsMovies = async () => {
-			setIsLoading(true)
-
-			try {
-				const { data } = await getPopularsMovies()
-				const { results } = data
-
-				// Hago un slice para evitar mostar en populares la pelicula de la portada
-				// En ambos endpoints viene primera
-
-				setPopularMovies(results.slice(1, 5))
-			} catch (e) {
-				setError(true)
-				console.error(e)
-			} finally {
-				setIsLoading(false)
-			}
-		}
-		fetchPopularsMovies()
-	}, [])
 
 	const handleSetOption = (option: OptionType) => {
 		console.log(option)
 		setSelectedOption(option)
 	}
-	if (error) {
-		return null
-	}
-	// TODO Skeletons para el loading ?
 
 	return (
 		<div className={style.movies_list}>
@@ -58,12 +36,9 @@ const MoviesList = () => {
 				/>
 			</div>
 			<div className={style.movies_container}>
-				<Skeleton count={4} />
-				{/* {isLoading || !popularMovies ? (
-					<Skeleton count={4} />
-				) : (
-					popularMovies.map(movie => <MovieCard />)
-				)} */}
+				{selectedOption.value === options['popular']
+					? initialMovies.map(movie => <MovieCard key={movie.id} />)
+					: ['traer', 'del', 'localStorage'].map(movie => <MovieCard key={movie} />)}
 			</div>
 		</div>
 	)

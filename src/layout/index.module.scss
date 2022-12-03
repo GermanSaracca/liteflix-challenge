@@ -9,8 +9,8 @@
 
 	.main_wrapper {
 		flex: 1;
-		max-height: 100vh;
-		overflow-y: auto;
+		// max-height: 100vh;
+		// overflow-y: auto;
 		overflow-x: hidden;
 
 		@include mixins.media(desktop-m) {
