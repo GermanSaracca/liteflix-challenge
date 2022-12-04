@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react'
 import Button from '@/components/ui/Button'
 import MoviesList from '@/containers/MoviesList'
 import { PlayNoCircle, Plus } from '@/components/ui/Icons'
-import { getNowPlayingMovies, getPopularsMovies, THE_MOVIE_DB_IMAGES_BASE_URL } from '@/services'
+import {
+	getNowPlayingMovies,
+	getPopularsMovies,
+	THE_MOVIE_DB_IMAGES_BASE_URL_ORIGINAL,
+} from '@/services'
 import { Movie } from '@/types'
 import style from './index.module.scss'
 
@@ -43,9 +47,6 @@ const Dashboard = () => {
 					*/
 					setPopularMovies(popularMovies.slice(1, 5))
 				}
-
-				// console.log(`${THE_MOVIE_DB_IMAGES_BASE_URL}${movie.backdrop_path}`)
-				// console.log(`${THE_MOVIE_DB_IMAGES_BASE_URL}${movie.poster_path}`)
 			} catch (e) {
 				setError(true)
 				console.error(e)
@@ -71,7 +72,7 @@ const Dashboard = () => {
 				<div className={style.dashboard}>
 					<div className={style.image_wrapper}>
 						<img
-							src={`${THE_MOVIE_DB_IMAGES_BASE_URL}${featuredMovie.backdrop_path}`}
+							src={`${THE_MOVIE_DB_IMAGES_BASE_URL_ORIGINAL}${featuredMovie.backdrop_path}`}
 							alt={featuredMovie.title}
 						/>
 					</div>

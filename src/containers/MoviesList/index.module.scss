@@ -1,6 +1,13 @@
 @use '../../sass/mixins';
+@use '../../sass/variables/colors';
+@use '../../sass/variables/spacing';
 
 .movies_list {
+	$movie-card-height-mobile: 172px;
+	$movie-card-height-desktop: 146px;
+	$movie-card-height-desktop-xxl: 172px;
+	$dropdown-height: 66px;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -8,10 +15,8 @@
 	padding-bottom: 2rem;
 	width: 100%;
 
-	// border: solid 1px blueviolet;
-
 	.drop_down_wrapper {
-		margin-bottom: 27px;
+		min-height: $dropdown-height;
 	}
 
 	.movies_container {
@@ -20,25 +25,70 @@
 		justify-content: center;
 		gap: 1.5rem;
 		width: 100%;
+
+		.movie {
+			height: $movie-card-height-mobile;
+		}
 	}
+
 	@include mixins.media(tablet) {
 		.movies_container {
 			grid-template-columns: repeat(2, 1fr);
 		}
 	}
+
 	@include mixins.media(desktop-s) {
 		.movies_container {
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
+
 	@include mixins.media(desktop-m) {
 		padding: 0;
+		height: 100%;
 
 		.movies_container {
+			$container-gap: 20px;
+			flex: 1;
 			display: flex;
 			flex-direction: column;
-			gap: 20px;
+			justify-content: flex-start;
+			gap: $container-gap;
 			max-width: 220px;
+			max-height: calc(($movie-card-height-desktop * 2) + 20px);
+			overflow-y: auto;
+			@include mixins.custom-scrollbar(
+				$width: 4px,
+				$trackColor: transparent,
+				$thumbColor: rgba(colors.$primary, 0.5)
+			);
+			padding-right: 2px;
+
+			@media screen and (min-height: calc(($movie-card-height-desktop * 3) + ($container-gap * 2) + $dropdown-height + (spacing.$header-height-desktop * 2) )) {
+				max-height: calc(($movie-card-height-desktop * 3) + (20px * 2));
+			}
+
+			@media screen and (min-height: calc(($movie-card-height-desktop * 4) + ($container-gap * 3) + $dropdown-height + (spacing.$header-height-desktop * 2) )) {
+				max-height: calc(($movie-card-height-desktop * 4) + (20px * 3));
+			}
+
+			.movie {
+				min-height: $movie-card-height-desktop;
+				max-height: $movie-card-height-desktop;
+			}
+		}
+	}
+
+	@include mixins.media(desktop-xxl) {
+		.movies_container {
+			max-width: 300px;
+
+			max-height: calc(($movie-card-height-desktop-xxl * 4) + (20px * 3));
+
+			.movie {
+				min-height: $movie-card-height-desktop-xxl;
+				max-height: $movie-card-height-desktop-xxl;
+			}
 		}
 	}
 }

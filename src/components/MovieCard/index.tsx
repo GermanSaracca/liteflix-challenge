@@ -1,3 +1,4 @@
+import { THE_MOVIE_DB_IMAGES_BASE_URL_W_400 } from '@/services'
 import { Movie } from '@/types'
 import { Play, Star } from '../ui/Icons'
 import style from './index.module.scss'
@@ -13,17 +14,20 @@ const MovieCard = ({ movie }: IProps) => {
 				<button className={style.play_button} aria-label='Play movie'>
 					<Play width={'100%'} height={'100%'} />
 				</button>
-				<div className={style.title_container}>
-					<h2>{movie.title}</h2>
-				</div>
+
+				<h2>{movie.title}</h2>
 			</div>
 
 			<div className={style.onhover_content}>
 				<div className={style.rating}>
 					<Star />
-					{movie.vote_average}
+					<span>{movie.vote_average}</span>
 				</div>
+				<time dateTime={`${movie.release_date}`}>
+					{movie.release_date && new Date(movie.release_date).getFullYear().toString()}
+				</time>
 			</div>
+			<img src={`${THE_MOVIE_DB_IMAGES_BASE_URL_W_400}${movie.backdrop_path}`} alt={movie.title} />
 		</div>
 	)
 }

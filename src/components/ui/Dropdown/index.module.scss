@@ -9,7 +9,7 @@
 	.header {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: center;
 		margin-left: auto;
 		color: colors.$white;
 		font-size: 18px;
@@ -19,22 +19,24 @@
 		button {
 			display: flex;
 			align-items: center;
+			justify-content: flex-end;
 			gap: 8px;
-			width: 100%;
+			width: fit-content;
 			font-weight: 400;
 			letter-spacing: 4px;
 			color: inherit;
 			background-color: transparent;
 			border: none;
 			padding: 0;
+			text-shadow: 0 0 4px colors.$primary;
 			cursor: pointer;
 
 			span {
 				font-weight: 700;
 			}
-			svg {
-				margin-left: auto;
-			}
+			// svg {
+			// 	margin-left: auto;
+			// }
 		}
 	}
 

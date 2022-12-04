@@ -37,9 +37,15 @@ const MoviesList = ({ initialMovies }: IProps) => {
 			</div>
 			<div className={style.movies_container}>
 				{selectedOption.value === options['popular']
-					? initialMovies.map(movie => <MovieCard movie={movie} key={movie.id} />)
+					? initialMovies.map(movie => (
+							<div className={style.movie} key={movie.id}>
+								<MovieCard movie={movie} />
+							</div>
+					  ))
 					: ['traer', 'del', 'localStorage'].map(movie => (
-							<MovieCard movie={initialMovies[0]} key={movie} />
+							<div className={style.movie} key={movie}>
+								<MovieCard movie={initialMovies[0]} />
+							</div>
 					  ))}
 			</div>
 		</div>

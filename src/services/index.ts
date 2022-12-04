@@ -3,7 +3,8 @@ import axios, { AxiosResponse } from 'axios'
 
 const THE_MOVIE_DB_BASE_URL = 'https://api.themoviedb.org/3/movie/'
 const THE_MOVIE_DB_API_KEY = import.meta.env.VITE_MOVIE_DB_API_KEY
-export const THE_MOVIE_DB_IMAGES_BASE_URL = 'https://image.tmdb.org/t/p/original/'
+export const THE_MOVIE_DB_IMAGES_BASE_URL_ORIGINAL = 'https://image.tmdb.org/t/p/original/'
+export const THE_MOVIE_DB_IMAGES_BASE_URL_W_400 = 'https://image.tmdb.org/t/p/w400/'
 
 export interface GetMoviesResponse {
 	results: Movie[]
