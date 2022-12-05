@@ -23,6 +23,7 @@ const MoviesList = ({ initialMovies }: IProps) => {
 
 	const handleSetOption = (option: OptionType) => {
 		console.log(option)
+
 		setSelectedOption(option)
 	}
 

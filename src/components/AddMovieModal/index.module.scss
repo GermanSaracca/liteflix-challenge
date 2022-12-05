@@ -1,0 +1,77 @@
+@use '../../sass/variables/colors';
+@use '../../sass/mixins';
+
+.main_wrapper {
+	height: 100%;
+}
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+
+	.input_file_container {
+	}
+
+	.required_span {
+		display: inline-block;
+		padding-block: 4px;
+		font-size: 14px;
+		color: colors.$negative;
+	}
+
+	.input_name_container {
+		align-self: center;
+		padding-block: 8px;
+		border-bottom: solid 1px colors.$white;
+		width: 248px;
+		margin-block: 2rem;
+
+		&:focus-within {
+			border-bottom: solid 2px colors.$secondary;
+		}
+
+		input {
+			width: 100%;
+			text-align: center;
+			background-color: transparent;
+			border: none;
+			font-size: 16px;
+			letter-spacing: 4px;
+			color: colors.$white;
+			caret-color: colors.$secondary;
+
+			&:focus {
+				outline: none;
+
+				&::placeholder {
+					opacity: 0;
+				}
+			}
+
+			&::placeholder {
+				text-align: center;
+				color: colors.$white;
+			}
+		}
+	}
+
+	.buttons_container {
+		// margin-top: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	@include mixins.media(desktop-m) {
+		.buttons_container {
+			> :last-child {
+				display: none;
+			}
+		}
+		.input_name_container {
+			margin-block: 0;
+		}
+	}
+}

@@ -1,0 +1,104 @@
+@use '../../../sass/variables/colors';
+@use '../../../sass/variables/spacing';
+@use '../../../sass/mixins';
+
+.ReactModal__Overlay {
+	display: grid;
+	place-items: center;
+	position: fixed !important;
+	inset: 0px !important;
+	z-index: 100 !important;
+	background-color: change-color($color: colors.$primary, $alpha: 0.6) !important;
+	opacity: 0;
+	transition: opacity 350ms ease-in-out;
+
+	padding-top: spacing.$header-height-mobile;
+	min-height: calc(100% - spacing.$header-height-mobile) !important;
+
+	&--after-open {
+		opacity: 1;
+	}
+
+	&--before-close {
+		opacity: 0;
+	}
+
+	@include mixins.media(desktop-m) {
+		padding-top: 0;
+	}
+}
+.ReactModal__Content {
+	position: static !important;
+	height: 100%;
+	max-height: 100%;
+	width: 100%;
+	border: 0 !important;
+	background-color: colors.$primary !important;
+	overflow: auto;
+	border-radius: 0 !important;
+	outline: none;
+	padding: 0 !important;
+	opacity: 0;
+	transition: all 450ms ease-in-out;
+	transform: translateY(200%);
+
+	&--after-open {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	&--before-close {
+		opacity: 0;
+	}
+
+	@include mixins.custom-scrollbar(6px, transparent, rgba(255, 255, 255, 0.25));
+
+	@include mixins.media(desktop-m) {
+		width: max(730px, 50vw);
+		height: max(440px, 40vh);
+	}
+
+	.modal_inner-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+		padding: 5rem 1.5rem 1.5rem !important;
+		position: relative;
+
+		.modal_close-button {
+			display: none;
+			visibility: hidden;
+			background-color: transparent;
+			border: 0;
+			color: colors.$white;
+			padding: 0.5rem;
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			cursor: pointer;
+
+			&:hover {
+				color: colors.$secondary;
+			}
+
+			@include mixins.media(desktop-m) {
+				display: block;
+				visibility: visible;
+			}
+		}
+
+		.modal_title {
+			color: colors.$secondary;
+			font-weight: 700;
+			font-size: 22px;
+			letter-spacing: 4px;
+			text-align: center;
+			margin-bottom: 5vh;
+		}
+
+		@include mixins.media(desktop-m) {
+			padding: 48px 64px !important;
+		}
+	}
+}

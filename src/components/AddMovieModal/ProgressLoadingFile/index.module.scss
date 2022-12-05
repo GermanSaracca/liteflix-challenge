@@ -1,0 +1,59 @@
+@use '../../../sass/variables/colors';
+
+.progress_loading_file {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 1rem;
+
+	.current_info,
+	.action_button {
+		color: colors.$white;
+	}
+
+	.action_button {
+		align-self: flex-end;
+		background: none;
+		border: none;
+		padding: 0;
+		color: colors.$white;
+		letter-spacing: 4px;
+		cursor: pointer;
+
+		&:hover {
+			color: colors.$secondary;
+		}
+	}
+	.fully_loaded {
+		align-self: flex-end;
+		color: colors.$secondary;
+	}
+
+	.progress_bar {
+		height: 10px;
+		position: relative;
+		isolation: isolate;
+
+		.progress {
+			height: 100%;
+			width: 0;
+			background-color: colors.$secondary;
+			transition: 100ms width linear;
+
+			&.error_loading {
+				width: 100% !important;
+				background-color: colors.$negative;
+			}
+		}
+		.back_line {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			z-index: -1;
+			transform: translateY(-2px);
+			height: 4px;
+			width: 100%;
+			background-color: change-color($color: colors.$white, $alpha: 0.5);
+		}
+	}
+}
