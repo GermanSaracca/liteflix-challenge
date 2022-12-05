@@ -41,7 +41,7 @@ const Header = () => {
 					<div className={style.notifications_wrapper}>
 						<NotificationsBell />
 					</div>
-					<img src={liteflix_logo} alt='Liteflix' className={style.liteflix_logo} />
+					<img src={liteflix_logo} alt='Liteflix logo' className={style.liteflix_logo} />
 					<img src={user_profile} alt='User settings' className={style.user_profile} />
 				</div>
 			</header>

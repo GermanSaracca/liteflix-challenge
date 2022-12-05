@@ -33,7 +33,7 @@ const Modal = ({
 					className='modal_close-button'
 					onClick={onRequestClose}
 					type='button'
-					aria-label='Close modal'
+					aria-label='Cerrar Modal'
 				>
 					<Close width={15} height={15} />
 				</button>

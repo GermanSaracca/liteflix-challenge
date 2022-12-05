@@ -12,6 +12,7 @@ const NotificationsBell = () => {
 			className={classNames(style.notifications_bell, {
 				[style.has_notifications]: hasNotifications,
 			})}
+			aria-label='Notificaciones'
 		>
 			<Bell width={26} height={26} />
 		</button>

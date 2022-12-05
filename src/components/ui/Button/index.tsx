@@ -8,10 +8,6 @@ type Props = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButt
 	icon?: ReactNode
 }
 
-/*
-	This button can act as a button or can be wrapped by an anchor tag or react router link component.
-*/
-
 const Button = ({ text, icon, variant, ...rest }: Props) => {
 	return (
 		<button

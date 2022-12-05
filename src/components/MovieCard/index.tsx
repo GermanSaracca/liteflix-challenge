@@ -11,7 +11,7 @@ const MovieCard = ({ movie }: IProps) => {
 	return (
 		<div className={style.movie_card}>
 			<div className={style.initial_content}>
-				<button className={style.play_button} aria-label='Play movie'>
+				<button className={style.play_button} aria-label='Reproducir película'>
 					<Play width={'100%'} height={'100%'} />
 				</button>
 

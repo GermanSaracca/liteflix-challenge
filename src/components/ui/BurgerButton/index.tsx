@@ -11,6 +11,7 @@ const BurgerButton = ({ open, setOpen }: IProps) => {
 			className={`hamburger hamburger--elastic ${open ? 'is-active' : ''}`}
 			type='button'
 			onClick={setOpen}
+			aria-label={`${open ? 'Cerrar menu' : 'Abrir menu'}`}
 		>
 			<span className='hamburger-box'>
 				<span className='hamburger-inner'></span>
