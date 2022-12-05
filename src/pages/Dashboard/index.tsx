@@ -9,6 +9,7 @@ import {
 } from '@/services'
 import { Movie } from '@/types'
 import style from './index.module.scss'
+import LoadingScreen from '@/components/LoadingScreen'
 
 const Dashboard = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -63,7 +64,7 @@ const Dashboard = () => {
 	}
 
 	if (isLoading) {
-		return <div>Some fullscreen loader...</div>
+		return <LoadingScreen />
 	}
 
 	return (

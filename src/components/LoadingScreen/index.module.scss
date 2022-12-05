@@ -1,0 +1,91 @@
+@use '../../sass/variables/colors';
+@use '../../sass/variables/spacing';
+@use '../../sass/variables/animations';
+@use '../../sass/mixins';
+
+.loading_screen {
+	$letter-width: 40px;
+
+	display: grid;
+	place-items: center;
+	position: absolute;
+	inset: 0;
+	z-index: spacing.$z-index-loading-screen;
+	background-color: colors.$primary;
+
+	&.presentation {
+		animation: fade-out 500ms ease forwards;
+		animation-delay: #{animations.$animation-presentation-duration}ms;
+
+		@keyframes fade-out {
+			to {
+				opacity: 0;
+				visibility: hidden;
+				pointer-events: none;
+				background-color: transparent;
+			}
+		}
+		.letter_container {
+			animation: none;
+		}
+	}
+
+	.letter_container {
+		position: relative;
+		min-width: calc($letter-width * 3);
+		min-height: calc($letter-width * 4);
+		animation: pulse-animation 2s ease infinite;
+		animation-delay: #{calc(animations.$animation-presentation-duration / 2)}ms;
+
+		span {
+			display: block;
+			background-color: colors.$secondary;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+		span:first-of-type {
+			width: $letter-width;
+			height: 0;
+			opacity: 0;
+			animation: span-one #{calc(animations.$animation-presentation-duration / 2)}ms ease forwards;
+			animation-delay: 200ms;
+		}
+		span:last-of-type {
+			width: 0;
+			opacity: 0;
+			height: $letter-width;
+			box-shadow: 0 0 30px colors.$primary;
+			animation: span-two #{calc(animations.$animation-presentation-duration / 2)}ms ease forwards;
+			animation-delay: 200ms;
+		}
+
+		@keyframes span-one {
+			to {
+				height: calc($letter-width * 4);
+				opacity: 1;
+			}
+		}
+		@keyframes span-two {
+			to {
+				width: calc($letter-width * 3);
+				opacity: 1;
+			}
+		}
+
+		@keyframes pulse-animation {
+			0% {
+				transform: scale(1);
+				filter: drop-shadow(0 0 0.75rem colors.$primary);
+			}
+			50% {
+				transform: scale(1.2);
+				filter: drop-shadow(0 0 7rem colors.$secondary);
+			}
+			100% {
+				transform: scale(1);
+				filter: drop-shadow(0 0 0.75rem colors.$primary);
+			}
+		}
+	}
+}

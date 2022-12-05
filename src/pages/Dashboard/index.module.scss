@@ -1,6 +1,9 @@
 @use '../../sass/variables/colors';
 @use '../../sass/variables/spacing';
+@use '../../sass/variables/animations';
 @use '../../sass/mixins';
+
+// animation-delay: #{animations.$animation-presentation-duration}ms;
 
 .dashboard {
 	display: flex;
