@@ -25,3 +25,12 @@ export const getPopularsMovies = (): Promise<AxiosResponse<GetMoviesResponse>> =
 		},
 	})
 }
+// Deberia ir en una carpeta utils quizas, pero lo pongo aca para evitar otra carpeta y simular lo que en futuro seria un llamado a la API en realidad
+export const getMoviesFromLocalStorage = () => {
+	const moviesInStorage = window.localStorage.getItem('movies')
+	if (moviesInStorage) {
+		return JSON.parse(moviesInStorage)
+	} else {
+		return []
+	}
+}

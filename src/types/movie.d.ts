@@ -2,7 +2,7 @@ export interface Movie {
 	adult?: boolean
 	backdrop_path?: string
 	genre_ids?: number[]
-	id?: number
+	id?: number | string
 	original_language?: string
 	original_title?: string
 	overview?: string
@@ -13,4 +13,5 @@ export interface Movie {
 	video?: boolean
 	vote_average?: number
 	vote_count?: number
+	image?: string
 }

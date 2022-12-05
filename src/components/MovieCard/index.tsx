@@ -17,17 +17,25 @@ const MovieCard = ({ movie }: IProps) => {
 
 				<h2>{movie.title}</h2>
 			</div>
-
-			<div className={style.onhover_content}>
-				<div className={style.rating}>
-					<Star />
-					<span>{movie.vote_average}</span>
+			{movie.vote_average && (
+				<div className={style.onhover_content}>
+					<div className={style.rating}>
+						<Star />
+						<span>{movie.vote_average}</span>
+					</div>
+					<time dateTime={`${movie.release_date}`}>
+						{movie.release_date && new Date(movie.release_date).getFullYear().toString()}
+					</time>
 				</div>
-				<time dateTime={`${movie.release_date}`}>
-					{movie.release_date && new Date(movie.release_date).getFullYear().toString()}
-				</time>
-			</div>
-			<img src={`${THE_MOVIE_DB_IMAGES_BASE_URL_W_400}${movie.backdrop_path}`} alt={movie.title} />
+			)}
+			{movie.backdrop_path ? (
+				<img
+					src={`${THE_MOVIE_DB_IMAGES_BASE_URL_W_400}${movie.backdrop_path}`}
+					alt={movie.title}
+				/>
+			) : (
+				<img src={`${movie.image}`} alt={movie.title} />
+			)}
 		</div>
 	)
 }
