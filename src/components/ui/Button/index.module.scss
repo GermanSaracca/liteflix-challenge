@@ -1,4 +1,5 @@
 @use '../../../sass/variables/colors';
+@use '../../../sass/variables/animations';
 
 .button {
 	$button_width: 248px;
@@ -114,5 +115,50 @@
 		border-right: 0.125rem solid;
 		transition: width $animation_duration cubic-bezier(0.07, 0.62, 0.61, 1),
 			height calc($animation_duration/2) $animation_duration cubic-bezier(0.07, 0.62, 0.61, 1);
+	}
+
+	// DEDICATED ANIMATIONS
+	&.animate_width {
+		width: 0;
+		min-width: 0;
+		padding-inline: 0;
+		margin-right: $button_width;
+		overflow: hidden;
+		animation: grow-width 1s ease forwards;
+		animation-delay: #{animations.$animation-presentation-duration}ms;
+
+		@keyframes grow-width {
+			to {
+				width: $button_width;
+				min-width: $button_width;
+				margin-right: 0;
+				padding: 21px 10px 17px;
+			}
+		}
+
+		& > * {
+			opacity: 0;
+			animation: fade-in 1s ease forwards;
+			animation-delay: #{calc(animations.$animation-presentation-duration * 1.2)}ms;
+
+			@keyframes fade-in {
+				to {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	&.fade_in {
+		opacity: 0;
+
+		animation: fade-in 1s ease forwards;
+		animation-delay: #{animations.$animation-presentation-duration}ms;
+
+		@keyframes fade-in {
+			to {
+				opacity: 1;
+			}
+		}
 	}
 }

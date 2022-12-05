@@ -1,9 +1,11 @@
+import { useState, DetailedHTMLProps, ButtonHTMLAttributes } from 'react'
 import classNames from 'classnames'
-import { useState } from 'react'
 import { Bell } from '../ui/Icons'
 import style from './index.module.scss'
 
-const NotificationsBell = () => {
+type Props = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+
+const NotificationsBell = (props: Props) => {
 	// Aca podriamos acceder al store de redux o a un context y estar observar si el usuario tiene notificaciones
 	const [hasNotifications] = useState<boolean>(true)
 
@@ -13,6 +15,7 @@ const NotificationsBell = () => {
 				[style.has_notifications]: hasNotifications,
 			})}
 			aria-label='Notificaciones'
+			{...props}
 		>
 			<Bell width={26} height={26} />
 		</button>

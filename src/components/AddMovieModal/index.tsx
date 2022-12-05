@@ -14,7 +14,7 @@ interface IProps {
 }
 
 type FormInputs = {
-	imageFile: FileList
+	imageFile: FileList | null
 	title: string
 }
 
@@ -47,26 +47,28 @@ const AddMovieModal = ({ isOpen, onClose }: IProps) => {
 		try {
 			const reader = new FileReader()
 
-			reader.readAsDataURL(imageFile[0])
+			if (imageFile) {
+				reader.readAsDataURL(imageFile[0])
 
-			reader.addEventListener('load', () => {
-				const newMovie: Movie = {
-					title,
-					image: reader.result as string,
-					id: new Date().toString(),
-				}
+				reader.addEventListener('load', () => {
+					const newMovie: Movie = {
+						title,
+						image: reader.result as string,
+						id: new Date().toString(),
+					}
 
-				const moviesInStorage: string = getMoviesFromLocalStorage()
+					const moviesInStorage: string = getMoviesFromLocalStorage()
 
-				if (moviesInStorage) {
-					localStorage.setItem('movies', JSON.stringify([...moviesInStorage, newMovie]))
-				} else {
-					localStorage.setItem('movies', JSON.stringify([newMovie]))
-				}
+					if (moviesInStorage) {
+						localStorage.setItem('movies', JSON.stringify([...moviesInStorage, newMovie]))
+					} else {
+						localStorage.setItem('movies', JSON.stringify([newMovie]))
+					}
 
-				setUploadSuccess(true)
-				handleCancelAnimationProgress()
-			})
+					setUploadSuccess(true)
+					handleCancelAnimationProgress()
+				})
+			}
 		} catch (e) {
 			console.error(e)
 		}
@@ -83,6 +85,7 @@ const AddMovieModal = ({ isOpen, onClose }: IProps) => {
 
 	const handleCancelAnimationProgress = () => {
 		setShowProgressBar({ show: false, success: false, fail: false })
+		setValue('imageFile', null, { shouldValidate: false, shouldDirty: false })
 	}
 
 	const handleClose = () => {

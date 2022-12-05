@@ -1,6 +1,7 @@
 @use '../../sass/mixins';
 @use '../../sass/variables/colors';
 @use '../../sass/variables/spacing';
+@use '../../sass/variables/animations';
 
 .movies_list {
 	$movie-card-height-mobile: 172px;
@@ -60,9 +61,17 @@
 			@include mixins.custom-scrollbar(
 				$width: 4px,
 				$trackColor: transparent,
-				$thumbColor: rgba(colors.$primary, 0.5)
+				$thumbColor: transparent
 			);
 			padding-right: 2px;
+
+			&:hover {
+				@include mixins.custom-scrollbar(
+					$width: 4px,
+					$trackColor: transparent,
+					$thumbColor: rgba(colors.$primary, 0.5)
+				);
+			}
 
 			@media screen and (min-height: calc(($movie-card-height-desktop * 3) + ($container-gap * 2) + $dropdown-height + (spacing.$header-height-desktop * 2) )) {
 				max-height: calc(($movie-card-height-desktop * 3) + (20px * 2));
@@ -75,6 +84,23 @@
 			.movie {
 				min-height: $movie-card-height-desktop;
 				max-height: $movie-card-height-desktop;
+
+				opacity: 0;
+				transform: translateY(15%);
+				animation: cards-animation 400ms ease forwards;
+			}
+
+			@for $i from 1 through 10 {
+				.movie:nth-child(#{$i}n) {
+					animation-delay: #{calc($i * 300)}ms;
+				}
+			}
+
+			@keyframes cards-animation {
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
 			}
 		}
 	}

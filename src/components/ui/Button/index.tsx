@@ -6,15 +6,19 @@ type Props = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButt
 	variant: 'light' | 'dark' | 'transparent'
 	text?: string
 	icon?: ReactNode
+	animateWidth?: boolean
+	fadeIn?: boolean
 }
 
-const Button = ({ text, icon, variant, ...rest }: Props) => {
+const Button = ({ text, icon, variant, animateWidth, fadeIn, ...rest }: Props) => {
 	return (
 		<button
 			className={classNames(style.button, {
 				[style.light_variant]: variant === 'light',
 				[style.dark_variant]: variant === 'dark',
 				[style.transparent_variant]: variant === 'transparent',
+				[style.animate_width]: Boolean(animateWidth),
+				[style.fade_in]: Boolean(fadeIn),
 			})}
 			{...rest}
 		>

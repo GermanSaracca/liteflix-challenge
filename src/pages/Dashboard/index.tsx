@@ -82,10 +82,12 @@ const Dashboard = () => {
 							<p>
 								Original de <span>Liteflix</span>
 							</p>
-							<h1>{featuredMovie.title}</h1>
+							<div className={style.title_container}>
+								<h1>{featuredMovie.title}</h1>
+							</div>
 							<div className={style.ctas_wrapper}>
-								<Button variant='dark' text='Reproducir' icon={<PlayNoCircle />} />
-								<Button variant='transparent' text='Mi lista' icon={<Plus />} />
+								<Button variant='dark' text='Reproducir' icon={<PlayNoCircle />} animateWidth />
+								<Button variant='transparent' text='Mi lista' icon={<Plus />} fadeIn />
 							</div>
 						</header>
 

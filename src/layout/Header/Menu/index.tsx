@@ -20,9 +20,9 @@ const Menu = ({ opened, toggleMenu }: IProps) => {
 				})}
 			>
 				<header>
-					<BurgerButton open={opened} setOpen={toggleMenu} />
+					<BurgerButton open={opened} setOpen={toggleMenu} tabIndex={!opened ? -1 : 0} />
 					<div className={style.notifications_wrapper}>
-						<NotificationsBell />
+						<NotificationsBell tabIndex={!opened ? -1 : 0} />
 					</div>
 					<img src={user_profile} alt='User settings' className={style.user_profile} />
 				</header>
