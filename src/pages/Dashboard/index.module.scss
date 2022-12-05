@@ -18,15 +18,6 @@
 		img {
 			min-height: 80vh;
 			object-fit: cover;
-			transform: scale(1.3);
-			animation: reduce-scale 3000ms ease forwards;
-			animation-delay: #{animations.$animation-presentation-duration}ms;
-
-			@keyframes reduce-scale {
-				to {
-					transform: scale(1);
-				}
-			}
 		}
 
 		&::before {
@@ -59,7 +50,6 @@
 				font-weight: 400;
 				font-size: 20px;
 				margin-bottom: 0.5rem;
-				width: fit-content;
 				opacity: 0;
 				transform: translateX(-50%);
 
@@ -147,6 +137,7 @@
 
 				p {
 					padding-left: 4px;
+					width: fit-content;
 				}
 				.title_container {
 					margin-bottom: 1rem;
@@ -185,6 +176,15 @@
 		.image_wrapper {
 			img {
 				min-height: 100vh;
+				transform: scale(1.3);
+				animation: reduce-scale 3000ms ease forwards;
+				animation-delay: #{animations.$animation-presentation-duration}ms;
+
+				@keyframes reduce-scale {
+					to {
+						transform: scale(1);
+					}
+				}
 			}
 
 			&::before {

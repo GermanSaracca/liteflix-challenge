@@ -150,7 +150,7 @@ const AddMovieModal = ({ isOpen, onClose }: IProps) => {
 						{/* SUBMIT BUTTON */}
 						<div className={style.buttons_container}>
 							<Button type='submit' variant='light' text='Subir película' disabled={!isValid} />
-							<Button type='button' variant='transparent' text='Salir' />
+							<Button type='button' variant='transparent' text='Salir' onClick={handleClose} />
 						</div>
 					</form>
 				)}

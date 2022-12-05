@@ -152,7 +152,7 @@
 	&.fade_in {
 		opacity: 0;
 
-		animation: fade-in 1s ease forwards;
+		animation: fade-in 2s ease forwards;
 		animation-delay: #{animations.$animation-presentation-duration}ms;
 
 		@keyframes fade-in {
