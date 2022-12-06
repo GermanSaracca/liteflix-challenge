@@ -8,6 +8,7 @@
 	$movie-card-height-desktop: 146px;
 	$movie-card-height-desktop-xxl: 172px;
 	$dropdown-height: 66px;
+	$container-gap: 20px;
 
 	display: flex;
 	flex-direction: column;
@@ -49,7 +50,6 @@
 		height: 100%;
 
 		.movies_container {
-			$container-gap: 20px;
 			flex: 1;
 			display: flex;
 			flex-direction: column;
@@ -73,12 +73,13 @@
 				);
 			}
 
-			@media screen and (min-height: calc(($movie-card-height-desktop * 3) + ($container-gap * 2) + $dropdown-height + (spacing.$header-height-desktop * 2) )) {
-				max-height: calc(($movie-card-height-desktop * 3) + (20px * 2));
-			}
-
-			@media screen and (min-height: calc(($movie-card-height-desktop * 4) + ($container-gap * 3) + $dropdown-height + (spacing.$header-height-desktop * 2) )) {
-				max-height: calc(($movie-card-height-desktop * 4) + (20px * 3));
+			@media (max-width: 1919px) {
+				@media screen and (min-height: calc(($movie-card-height-desktop * 3) + ($container-gap * 2) + $dropdown-height + (spacing.$header-height-desktop * 2) )) {
+					max-height: calc(($movie-card-height-desktop * 3) + ($container-gap * 2));
+				}
+				@media screen and (min-height: calc(($movie-card-height-desktop * 4) + ($container-gap * 3) + $dropdown-height  + (spacing.$header-height-desktop * 2) )) {
+					max-height: calc(($movie-card-height-desktop * 4) + ($container-gap * 3));
+				}
 			}
 
 			.movie {
@@ -109,7 +110,12 @@
 		.movies_container {
 			max-width: 300px;
 
-			max-height: calc(($movie-card-height-desktop-xxl * 4) + (20px * 3));
+			@media screen and (min-height: calc(($movie-card-height-desktop-xxl * 3) + ($container-gap * 2) + $dropdown-height + (spacing.$header-height-desktop * 2) )) {
+				max-height: calc(($movie-card-height-desktop-xxl * 3) + ($container-gap * 2));
+			}
+			@media screen and (min-height: calc(($movie-card-height-desktop-xxl * 4) + ($container-gap * 3) + $dropdown-height  + (spacing.$header-height-desktop * 2) )) {
+				max-height: calc(($movie-card-height-desktop-xxl * 4) + ($container-gap * 3));
+			}
 
 			.movie {
 				min-height: $movie-card-height-desktop-xxl;
