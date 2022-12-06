@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { getMoviesFromLocalStorage } from '@/services'
 import Button from '../ui/Button'
 import Modal from '../ui/Modal'
 import DropFileZone from '../ui/DropFileZone'
-import style from './index.module.scss'
 import ProgressLoadingFile from './ProgressLoadingFile'
 import { Movie } from '@/types'
-import { getMoviesFromLocalStorage } from '@/services'
+import style from './index.module.scss'
 
 interface IProps {
 	isOpen: boolean

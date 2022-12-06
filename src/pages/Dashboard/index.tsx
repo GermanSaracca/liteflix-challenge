@@ -60,7 +60,7 @@ const Dashboard = () => {
 	}, [])
 
 	if (error) {
-		return <div>Some error fullscreen o se podria hacer retries en el fetch o un redirect</div>
+		return <div>Some error fullscreen, pero se podria hacer retries en el fetch o un redirect</div>
 	}
 
 	if (isLoading) {

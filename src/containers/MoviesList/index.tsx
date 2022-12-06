@@ -23,6 +23,9 @@ const MoviesList = ({ initialMovies }: IProps) => {
 	const [selectedOption, setSelectedOption] = useState<OptionType>(dropdownOptions[0])
 	const [moviesInStorage, setMoviesInStorage] = useState<Movie[] | []>(getMoviesFromLocalStorage())
 
+	// Podria haber creado un store de redux o context para informar que se agrego una pelicula y actualizar la lista.
+	// Lo evite para no complejizar tanto el codigo
+
 	const handleSetOption = (option: OptionType) => {
 		setSelectedOption(option)
 	}
