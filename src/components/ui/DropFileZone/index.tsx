@@ -1,11 +1,11 @@
 import { useCallback, useState } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { FileRejection, useDropzone } from 'react-dropzone'
 import classNames from 'classnames'
 import { Clip } from '@/components/ui/Icons'
 import style from './index.module.scss'
 
 interface Props {
-	onDropAccepted: (file: FileList) => void
+	onDropAccepted: (file: File) => void
 	onDropRejected: () => void
 }
 
@@ -27,15 +27,16 @@ const DropFileZone = ({ onDropAccepted, onDropRejected }: Props) => {
 	const MAX_SIZE = 1000000 // 1MB
 	const MAX_SIZE_FORMATTED = formatBytes(MAX_SIZE)
 
-	const handleDropAccepted = (file: any) => {
+	const handleDropAccepted = (file: File[]) => {
 		if (fileErrors) {
 			console.log('%cErrors cleaned', 'background-color: yellowgreen;')
 			setFileErrors(false)
 		}
-		onDropAccepted(file)
+
+		onDropAccepted(file[0])
 	}
 
-	const handleDropRejected = (fileRejections: any) => {
+	const handleDropRejected = (fileRejections: FileRejection[]) => {
 		console.log('%cFile rejected', 'background-color: red;')
 
 		const codeErrors = {

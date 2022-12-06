@@ -14,7 +14,7 @@ interface IProps {
 }
 
 type FormInputs = {
-	imageFile: FileList | null
+	imageFile: File | null
 	title: string
 }
 
@@ -48,7 +48,7 @@ const AddMovieModal = ({ isOpen, onClose }: IProps) => {
 			const reader = new FileReader()
 
 			if (imageFile) {
-				reader.readAsDataURL(imageFile[0])
+				reader.readAsDataURL(imageFile)
 
 				reader.addEventListener('load', () => {
 					const newMovie: Movie = {
@@ -74,7 +74,7 @@ const AddMovieModal = ({ isOpen, onClose }: IProps) => {
 		}
 	}
 
-	const handleDropAccepted = (value: FileList) => {
+	const handleDropAccepted = (value: File) => {
 		setValue('imageFile', value, { shouldValidate: true, shouldDirty: true })
 		setShowProgressBar({ show: true, success: true, fail: false })
 	}

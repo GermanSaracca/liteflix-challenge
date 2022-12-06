@@ -1,4 +1,8 @@
-export const Star = (props: any) => {
+import { SVGProps } from 'react'
+
+type Props = SVGProps<SVGSVGElement>
+
+export const Star = (props: Props) => {
 	return (
 		<svg
 			width='1em'

@@ -1,4 +1,8 @@
-export const Plus = (props: any) => {
+import { SVGProps } from 'react'
+
+type Props = SVGProps<SVGSVGElement>
+
+export const Plus = (props: Props) => {
 	return (
 		<svg
 			width='1em'

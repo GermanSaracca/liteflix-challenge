@@ -1,4 +1,8 @@
-export const Checked = (props: any) => {
+import { SVGProps } from 'react'
+
+type Props = SVGProps<SVGSVGElement>
+
+export const Checked = (props: Props) => {
 	return (
 		<svg
 			width='1em'

@@ -1,4 +1,8 @@
-export const PlayNoCircle = (props: any) => {
+import { SVGProps } from 'react'
+
+type Props = SVGProps<SVGSVGElement>
+
+export const PlayNoCircle = (props: Props) => {
 	return (
 		<svg
 			width='1em'

@@ -1,4 +1,8 @@
-export const Close = (props: any) => (
+import { SVGProps } from 'react'
+
+type Props = SVGProps<SVGSVGElement>
+
+export const Close = (props: Props) => (
 	<svg
 		width='1em'
 		height='1em'

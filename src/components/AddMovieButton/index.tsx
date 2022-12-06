@@ -15,7 +15,7 @@ const AddMovieButton = (
 	return (
 		<>
 			<button className={style.add_movie_button} onClick={toggleModal} {...props}>
-				<Plus width={16} heigth={16} />
+				<Plus width={14} height={14} />
 				Agregar película
 			</button>
 			<AddMovieModal isOpen={showModal} onClose={toggleModal} />
